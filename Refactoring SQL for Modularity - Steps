@@ -1,0 +1,47 @@
+ ----- Refactoring SQL for Modularity ----- 
+Refactoring SQL for Modularity Course Link:   https://courses.getdbt.com/courses/refactoring-sql-for-modularity
+
+
+ ----- Step 1: Migrate Legacy Code 1:1 ----- 
+•	Transfer your legacy code to your dbt project as is as a .sql file in the mode ls folder.
+•	Ensure that it can run and build in your data warehouse by running dbt run .
+•	Depending on the systems you are migrating between, you may need to adjust the flavor of SQL in your existing code to successf ully build the model.
+
+
+ ----- Step 2: Implement Sources/ Translate Hard Coded Table References ----- 
+•	For each of the raw tables referenced in the new model, configure a source to map to those tab les.
+•	Replace all the explicit tab le references in your query using the source macro.
+Step 3: Choosing a Refactoring Strategy
+Dec ide on your refactoring strategy...
+1.	Refactor on top of the existing model - create a new branch and refactor directly on the mode l that you created in the steps above.
+2.	Refactor alongside the existing model - rename the existing model by prepending it with legacy. Then copy the code into a new fil e with the original file name.
+The second opt ion plays better with the audit ing in step 6.
+
+
+ ----- Step 4: CTE Groupings and Cosmetic Cleanups ----- 
+•	Create one CTE for each sou rce referenced at the top of your model.
+•	Reimp lement subqueries as CTEs beneath the source CTEs.
+•	Update code to follow your sty le guide (at dbt Labs, we use al l lo wercase keywo rds, leverage whitespace for readability)
+•	Resource: dbt Labs, dbt style guide
+
+
+ ----- Step 5: Centralizing Transformations & Splitting up Models ----- 
+Str ucture your SQL into layers of model ing via staging models, intermediate models and final models.
+•	Staging models
+•	Light transformations on source data should be capt ured in staging models
+•	e.g. renaming columns, concatenat ing fields, convert ing data types
+•	Update al iases with purposeful names
+•	Scan for redundant transformations in the code and migrate into staging models.
+•	Bu ild depende ncies between the existin g model and the new ly created staging models.
+•	CTEs or intermediate models
+•	Inspect the grain of the transformations in latest version of the model, look for opportunities to move filters and aggre gat ions into earli er CTEs
+•	If the model code is lengthy or could be reusable in another case, break those CTEs into intermediate models.
+•	Final models
+•	For the rema ining logic, look for opportu nit ies to simplify aggregations and joins.
+•	It can also be helpful to update naming of CTEs for readabi lity in the future.
+
+
+ ----- Step 6: Auditing ----- 
+•	Audit your new model aga inst your old query to ensure that none of the changes you imp lemented changed the results of the modeling.
+•	The goal is for both the original code and your final model to produce the same results .
+•	The audit_helper package can be partic ular ly helpful here (audit_helper on hub.getdbt.com )
