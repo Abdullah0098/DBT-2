@@ -1,26 +1,25 @@
 GIT BRANCHING STRATEGIES:
 
-1.	Master Branch: The master branch is like the main version of your project that is ready for release.
-      It contains the stable and tested code that is used in the production environment.
+1.    Master Branch: The master branch is like the main version of your project that is ready for release.
+It contains the stable and tested code that is used in the production environment.
   
-2.  Integration Branch: The integration branch is where different changes from developers or teams come together. 
-        It ensures that all the code changes work well together before being merged into the master branch. Continuous Integration (CI) tools help automate the process
-        of merging and testing these changes.
+2.    Integration Branch: The integration branch is where different changes from developers or teams come together. 
+It ensures that all the code changes work well together before being merged into the master branch. Continuous Integration (CI) tools help automate the process
+ of merging and testing these changes.
       
-3.  Staging Branch: The staging branch acts as a staging area for final testing. It provides a separate environment where the integrated changes can be thoroughly tested, 
-      allowing Quality Assurance (QA) teams to check if everything works as expected before releasing it to the production environment.
+3.    Staging Branch: The staging branch acts as a staging area for final testing. It provides a separate environment where the integrated changes can be thoroughly tested, 
+allowing Quality Assurance (QA) teams to check if everything works as expected before releasing it to the production environment.
       
-4.  Dev/Deploy Branch: The dev/deploy branch is where active development takes place.
-      Developers create separate branches off this branch to work on specific features or fixes.
-      Once the changes are completed and tested, they are merged back into the dev/deploy branch. 
-      Continuous Deployment (CD) tools automate the process of deploying the changes from the dev/deploy branch to the staging or production environment.
+4.    Dev/Deploy Branch: The dev/deploy branch is where active development takes place. Developers create separate branches off this branch to work on specific features or fixes.
+Once the changes are completed and tested, they are merged back into the dev/deploy branch. 
+Continuous Deployment (CD) tools automate the process of deploying the changes from the dev/deploy branch to the staging or production environment.
   
 The CI/CD (Continuous Integration/Continuous Deployment) process involves using automated tools and practices to integrate code changes frequently,
 run tests, and deploy the software to different environments. QA teams play a crucial role in testing the changes in the staging branch to ensure high-quality software
 before it goes into production, which is the live environment where end-users can access and use the software.
 
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 GIT BRANCHING STRATEGIES SEQUENCE OF STEPS:
